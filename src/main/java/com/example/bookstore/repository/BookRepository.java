@@ -17,4 +17,8 @@ public class BookRepository {
     public void save(Book book){
         books.add(book);
     }
+
+    public void deleteAll() {
+        books.removeAll(books);
+    }
 }
