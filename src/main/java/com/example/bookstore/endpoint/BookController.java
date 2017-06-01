@@ -45,12 +45,10 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @GetMapping("/{text}")
-    public String deleteBook(@PathVariable("text") String text,
-                            Map<String, Object> model,
-                            @ModelAttribute BookDto bookDto,
-                             RedirectAttributes redirectAttributes) {
-        model.put("text", text);
+    @GetMapping("/delete/{id}")
+    public String deleteBook(@PathVariable String id,
+                             RedirectAttributes redirectAttributes,
+                             @ModelAttribute BookDto bookDto) {
         bookService.deleteBook(bookDto.getId());
         redirectAttributes.addFlashAttribute(
                 "result", "Ksiazka zostala usunieta");
