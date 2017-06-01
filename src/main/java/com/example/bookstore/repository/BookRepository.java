@@ -21,4 +21,8 @@ public class BookRepository {
     public void deleteAll() {
         books.removeAll(books);
     }
+
+    public void deleteOne (int id) {
+        books.remove(id);
+    }
 }

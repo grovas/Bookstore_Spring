@@ -1,11 +1,12 @@
 package com.example.bookstore.endpoint;
 
+import com.example.bookstore.model.Book;
+import com.example.bookstore.model.BookDto;
 import com.example.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.Map;
@@ -32,5 +33,27 @@ public class BookController {
         model.put("time", new Date());
         model.put("listing", bookService.getListingData());
         return "book-listing";
+    }
+
+    @PostMapping()
+    public String addBook(@ModelAttribute BookDto bookDto,
+                          RedirectAttributes redirectAttributes) {
+        //bookService.addBook(book);
+        bookService.addBook(bookDto.fromDto());
+        redirectAttributes.addFlashAttribute(
+                "result", "Ksiazka zostala dodana");
+        return "redirect:/books";
+    }
+
+    @GetMapping("/{text}")
+    public String deleteBook(@PathVariable("text") String text,
+                            Map<String, Object> model,
+                            @ModelAttribute BookDto bookDto,
+                             RedirectAttributes redirectAttributes) {
+        model.put("text", text);
+        bookService.deleteBook(bookDto.getId());
+        redirectAttributes.addFlashAttribute(
+                "result", "Ksiazka zostala usunieta");
+        return "redirect:/books";
     }
 }

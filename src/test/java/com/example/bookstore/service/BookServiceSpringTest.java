@@ -25,8 +25,8 @@ public class BookServiceSpringTest {
     @Before
     public void setUp() {
         bookRepository.deleteAll();
-        bookRepository.save(new Book("kniga 1", "pisarz 1"));
-        bookRepository.save(new Book("kniga 2", "pisarz 2"));
+        bookRepository.save(new Book(1, "kniga 1", "pisarz 1"));
+        bookRepository.save(new Book(2, "kniga 2", "pisarz 2"));
     }
 
     @Test
@@ -40,8 +40,8 @@ public class BookServiceSpringTest {
         assertEquals(
                 new BookListing(
                         Lists.newArrayList(
-                                new Book("kniga 1", "pisarz 1"),
-                                new Book("kniga 2", "pisarz 2")
+                                new Book(1, "kniga 1", "pisarz 1"),
+                                new Book(2, "kniga 2", "pisarz 2")
                         ),
                         2),
                 bookListing

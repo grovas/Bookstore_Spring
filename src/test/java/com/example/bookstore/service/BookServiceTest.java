@@ -29,16 +29,16 @@ public class BookServiceTest {
         // given
         when(bookRepository.findAll()).thenReturn(
                 Lists.newArrayList(
-                        new Book("title-test1", "author-test1"),
-                        new Book("title-test1", "author-test1")
+                        new Book(1, "title-test1", "author-test1"),
+                        new Book(2, "title-test1", "author-test1")
                 )
         );
         // when
         BookListing bookListing = bookService.getListingData();
         // then
         assertEquals(new BookListing(Lists.newArrayList(
-                new Book("title-test1", "author-test1"),
-                new Book("title-test1", "author-test1")),
+                new Book(1, "title-test1", "author-test1"),
+                new Book(2, "title-test1", "author-test1")),
                         2),
                     bookListing);
         //verify(bookRepository).findAll();

@@ -12,6 +12,10 @@ public class BookListing {
         this.count = count;
     }
 
+    public int bookListingSize() {
+        return books.size();
+    }
+
     public List<Book> getBooks() {
         return books;
     }
